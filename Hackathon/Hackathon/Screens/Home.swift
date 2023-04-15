@@ -23,16 +23,16 @@ struct HomeView: View{
                 
                 // background image
                 Image("Ellipse")
-    //                .background(Color.red)
+                //                .background(Color.red)
                     .padding(.top, geometry.size.height * 0.2)
-
-                    
-                    
+                
+                
+                
                 Image("treeImg")
-    //                .background(Color.red)
+                //                .background(Color.red)
                     .padding(.top, geometry.size.height * 0.38)
                     .padding(.leading, geometry.size.width * 0.21)
-                    
+                
                 
                 VStack {
                     Text("What is your car model?")
@@ -40,7 +40,7 @@ struct HomeView: View{
                         .frame(width: 232)
                         .padding(.top, geometry.size.height * 0.03)
                         .padding(.trailing, geometry.size.width * 0.32)
-//                        .background(Color.red)
+                    //                        .background(Color.red)
                     
                     Spacer()
                 }
@@ -48,12 +48,12 @@ struct HomeView: View{
                 
                 
                 VStack(spacing: 60){
-                    Boxes(content: "Make", geometry: geometry)
-                    Boxes(content: "Model", geometry: geometry)
-                    Boxes(content: "Year", geometry: geometry)
+                    Boxes(customStrings: ["Select"] + (1...29).map { "String \($0)" }, content: "Make", geometry: geometry)
+                    Boxes(customStrings: ["Select"] + (1...29).map { "String \($0)" }, content: "Model", geometry: geometry)
+                    Boxes(customStrings: ["Select"] + (1...29).map { "String \($0)" }, content: "Year", geometry: geometry)
                 }
                 .padding(.bottom, geometry.size.height * 0.2)
-//                .background(Color.red)
+                //                .background(Color.red)
                 
                 // init button
                 ZStack {
@@ -89,7 +89,8 @@ struct HomeView: View{
 // MARK: - Boxes
 
 public struct Boxes: View{
-    
+    @State var selection: Int = 0
+    let customStrings: [String]
     var content: String
     var geometry: GeometryProxy
     
@@ -105,48 +106,42 @@ public struct Boxes: View{
                 //                            .background(Color.red)
                 Spacer()
             }
-            
-            
-            HStack {
-                Button {
-                    // TODO
-                } label: {
-                    ZStack {
-                        HStack {
-                            Text("Select")
-                                .padding()
-                                
-                            Image("Arrow")
-                                .frame(width: 18, height: 18)
-                                .padding(.leading, geometry.size.width * 0.55)
-                                .padding(.trailing, geometry.size.width * 0.05)
-                            //                                        .background(Color.red)
-                            
-                            
+  
+            HStack{
+                ZStack {
+                    
+                    Picker(selection: $selection, label: Text(customStrings[selection])) {
+                        ForEach(customStrings.indices, id: \.self) { index in
+                            Text(customStrings[index])
+                                .tag(index)
                         }
-                        .background(
-                            RoundedRectangle(cornerRadius: 14)
-                                .stroke(_borderGreen, lineWidth: 4))
-                        .background(
-                            RoundedRectangle(cornerRadius: 14)
-                                .fill(Color.white))
-                        .cornerRadius(14)
-                        .shadow(color: _shadowGreen.opacity(0.25), radius: 10, x: 0, y: 10)
-                        // Adjust the value to match the arrow image width and padding
-                        
-                        // Adjust the trailing padding as needed
                     }
+                    
+                    .padding(9)
+                    .padding(.trailing, geometry.size.width * 0.58 )
+                    .background(
+                        RoundedRectangle(cornerRadius: 14)
+                            .stroke(Color.green, lineWidth: 4))
+                    .background(
+                        RoundedRectangle(cornerRadius: 14)
+                            .fill(Color.white))
+                    .cornerRadius(14)
+                    .shadow(color: Color.green.opacity(0.25), radius: 10, x: 0, y: 10)
+                    
+
                 }
-                
-                
                 Spacer()
             }
             
         }
         .padding(.leading,  geometry.size.width * 0.08)
+        
     }
     
 }
+
+
+
 
 
 struct HomeVeiw: PreviewProvider {
@@ -158,3 +153,93 @@ struct HomeVeiw: PreviewProvider {
 }
 
 
+
+//public struct Boxes: View{
+//    @State var selection: Int = 0
+//    let customStrings = ["Select"] + (1...29).map { "String \($0)" }
+//    var content: String
+//    var geometry: GeometryProxy
+//
+//    public var body: some View{
+//
+//
+//        VStack{
+//            HStack {
+//                Text(content)
+//                    .font(.system(size: 20, weight: .medium, design: .default))
+//                    .opacity(0.75)
+//                    .padding(.trailing, geometry.size.width * 0.65)
+//                //                            .background(Color.red)
+//                Spacer()
+//            }
+//
+//
+//            //            HStack {
+//            //                Button {
+//            //                    // TODO
+//            //
+//            //                } label: {
+//            //                    ZStack {
+//            //                        HStack {
+//            //                            Text("Select")
+//            //                                .padding()
+//            //
+//            //                            Image("Arrow")
+//            //                                .frame(width: 18, height: 18)
+//            //                                .padding(.leading, geometry.size.width * 0.55)
+//            //                                .padding(.trailing, geometry.size.width * 0.05)
+//            //                            //                                        .background(Color.red)
+//            //
+//            //
+//            //                        }
+//            //                        .background(
+//            //                            RoundedRectangle(cornerRadius: 14)
+//            //                                .stroke(_borderGreen, lineWidth: 4))
+//            //                        .background(
+//            //                            RoundedRectangle(cornerRadius: 14)
+//            //                                .fill(Color.white))
+//            //                        .cornerRadius(14)
+//            //                        .shadow(color: _shadowGreen.opacity(0.25), radius: 10, x: 0, y: 10)
+//            //                        // Adjust the value to match the arrow image width and padding
+//            //
+//            //                        // Adjust the trailing padding as needed
+//            //                    }
+//            //                }
+//            //
+//            //
+//            //                Spacer()
+//            //            }
+//            HStack{
+//                ZStack {
+//
+//                    Picker(selection: $selection, label: Text(customStrings[selection])) {
+//                        ForEach(customStrings.indices, id: \.self) { index in
+//                            Text(customStrings[index])
+//                                .tag(index)
+//                        }
+//                    }
+//
+//                    .padding(9)
+//                    .padding(.trailing, geometry.size.width * 0.58 )
+//                    .background(
+//                        RoundedRectangle(cornerRadius: 14)
+//                            .stroke(Color.green, lineWidth: 4))
+//                    .background(
+//                        RoundedRectangle(cornerRadius: 14)
+//                            .fill(Color.white))
+//                    .cornerRadius(14)
+//                    .shadow(color: Color.green.opacity(0.25), radius: 10, x: 0, y: 10)
+//
+////                    Image("Arrow")
+////                        .frame(width: 18, height: 18)
+////                        .padding(.leading, 60)
+//                }
+//                Spacer()
+//            }
+//
+//        }
+//        .padding(.leading,  geometry.size.width * 0.08)
+//
+//    }
+//
+//}
