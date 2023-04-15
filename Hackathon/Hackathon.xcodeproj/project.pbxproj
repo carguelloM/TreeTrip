@@ -14,6 +14,9 @@
 		E7F9484D29EB163F001F2985 /* HackathonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9484C29EB163F001F2985 /* HackathonTests.swift */; };
 		E7F9485729EB163F001F2985 /* HackathonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9485629EB163F001F2985 /* HackathonUITests.swift */; };
 		E7F9485929EB163F001F2985 /* HackathonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9485829EB163F001F2985 /* HackathonUITestsLaunchTests.swift */; };
+		E7F9486629EB178B001F2985 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9486529EB178B001F2985 /* Home.swift */; };
+		E7F9486929EB3C20001F2985 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9486829EB3C20001F2985 /* Loading.swift */; };
+		E7F9486B29EB4179001F2985 /* treeGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = E7F9486A29EB4179001F2985 /* treeGif.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		E7F9485229EB163F001F2985 /* HackathonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HackathonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7F9485629EB163F001F2985 /* HackathonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackathonUITests.swift; sourceTree = "<group>"; };
 		E7F9485829EB163F001F2985 /* HackathonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackathonUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E7F9486529EB178B001F2985 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		E7F9486829EB3C20001F2985 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
+		E7F9486A29EB4179001F2985 /* treeGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = treeGif.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,7 @@
 			children = (
 				E7F9483B29EB163E001F2985 /* HackathonApp.swift */,
 				E7F9483D29EB163E001F2985 /* ContentView.swift */,
+				E7F9486729EB1794001F2985 /* Screens */,
 				E7F9483F29EB163E001F2985 /* Assets.xcassets */,
 				E7F9484129EB163E001F2985 /* Preview Content */,
 			);
@@ -125,6 +132,16 @@
 				E7F9485829EB163F001F2985 /* HackathonUITestsLaunchTests.swift */,
 			);
 			path = HackathonUITests;
+			sourceTree = "<group>";
+		};
+		E7F9486729EB1794001F2985 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				E7F9486A29EB4179001F2985 /* treeGif.gif */,
+				E7F9486529EB178B001F2985 /* Home.swift */,
+				E7F9486829EB3C20001F2985 /* Loading.swift */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7F9484329EB163E001F2985 /* Preview Assets.xcassets in Resources */,
+				E7F9486B29EB4179001F2985 /* treeGif.gif in Resources */,
 				E7F9484029EB163E001F2985 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +276,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7F9483E29EB163E001F2985 /* ContentView.swift in Sources */,
+				E7F9486629EB178B001F2985 /* Home.swift in Sources */,
+				E7F9486929EB3C20001F2985 /* Loading.swift in Sources */,
 				E7F9483C29EB163E001F2985 /* HackathonApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
