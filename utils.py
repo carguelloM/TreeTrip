@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-from math import radians, cos, sin, sqrt, atan2
+from math import radians, cos, sin, sqrt, atan2, ceil
+import pandas as pd
 import requests
 
 CAR_MAKE_ENDPOINT = "https://www.carboninterface.com/api/v1/vehicle_makes"
@@ -80,8 +81,20 @@ def calculate_emissions(distance, year, make, model):
 
     return response.json()["data"]["attributes"]["carbon_kg"]
 
+# Find the tree species closest to the given coordinate
+def find_closest_tree(lat, lon):
+    df = pd.read_csv('tree_db.csv')
+    distances = []
+    for index, row in df.iterrows():
+        dist = get_dist_between_two_points((lat, lon), (row['Lat'], row['Long']))
+        distances.append((dist, row['Tree']))
+    distances.sort()
+    return distances[0][1]
+
+def calculate_num_trees(car_emissions, emis_per_tree=10):
+    return ceil(car_emissions/emis_per_tree)
 
 if __name__ == "__main__":
-    print(calculate_emissions(100, 2003, "toyota", "corolla"))
+    print(find_closest_tree(43.71, -72))
 
 
