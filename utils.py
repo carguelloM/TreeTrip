@@ -5,7 +5,7 @@ import requests
 
 CAR_MAKE_ENDPOINT = "https://www.carboninterface.com/api/v1/vehicle_makes"
 ESTIMATES_ENDPOINT = "https://www.carboninterface.com/api/v1/estimates"
-
+CARBON_CONSUMPTION_PER_TREE_KG = 10
 def get_token():
     with open("token") as f:
         token = f.readline()
@@ -91,7 +91,7 @@ def find_closest_tree(lat, lon):
     distances.sort()
     return distances[0][1]
 
-def calculate_num_trees(car_emissions, emis_per_tree=10):
+def calculate_num_trees(car_emissions, emis_per_tree=CARBON_CONSUMPTION_PER_TREE_KG):
     return ceil(car_emissions/emis_per_tree)
 
 if __name__ == "__main__":
