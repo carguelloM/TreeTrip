@@ -21,7 +21,7 @@ struct ContentView: View {
         }
         else if (show.showDummyScreen == true)
         {
-            DummyView()
+            ResultView()
         }
         
     }
