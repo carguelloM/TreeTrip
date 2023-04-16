@@ -196,6 +196,79 @@ public struct Boxes: View{
 }
 
 
+
+//public struct Boxes: View {
+//    @State public var selection: Int = 0
+//    let customStrings: [String]
+//    var content: String
+//    var geometry: GeometryProxy
+//
+//    @ObservedObject var carMake: carMakeObj = carMakeObj.shared
+//    @ObservedObject var carModel: carModelObj = carModelObj.shared
+//
+//    public var body: some View {
+//        VStack {
+//            HStack {
+//                Text(content)
+//                    .font(.system(size: 20, weight: .medium, design: .default))
+//                    .opacity(0.75)
+//                    .padding(.trailing, geometry.size.width * 0.65)
+//                Spacer()
+//            }
+//
+//            HStack {
+//                ZStack {
+//                    Picker(selection: $selection, label: EmptyView()) {
+//                        ForEach(customStrings.indices, id: \.self) { index in
+//                            Text(customStrings[index])
+//                                .tag(index)
+//                        }
+//                    }
+//                    .fixedSize()
+//                    .padding(9)
+//                    .padding(.trailing, geometry.size.width * 0.58)
+//                    .background(
+//                        RoundedRectangle(cornerRadius: 14)
+//                            .stroke(Color.green, lineWidth: 4))
+//                    .background(
+//                        RoundedRectangle(cornerRadius: 14)
+//                            .fill(Color.white))
+//                    .cornerRadius(14)
+//                    .shadow(color: Color.green.opacity(0.25), radius: 10, x: 0, y: 10)
+//                    .onReceive([self.selection].publisher.first()) { (value) in
+//                        print(value)
+//                        if carMake.carMakesArray.count != 0 && value != 0 {
+//                            print(carMake.carMakesArray[value - 1])
+//                        }
+//                    }
+//                    
+//                    ScrollView(.horizontal, showsIndicators: false) {
+//                        Text(customStrings[selection])
+//                            .padding(.horizontal, 10)
+//                    }
+//                    .frame(width: 90, height: 30)
+//                    .background(
+//                        RoundedRectangle(cornerRadius: 14)
+//                            .stroke(Color.green, lineWidth: 4))
+//                    .background(
+//                        RoundedRectangle(cornerRadius: 14)
+//                            .fill(Color.white))
+//                    .cornerRadius(14)
+//                }
+//                Spacer()
+//            }
+//        }
+//        .padding(.leading, geometry.size.width * 0.08)
+//    }
+//}
+
+
+
+
+
+
+
+
 // MARK: - Boxes1
 
 public struct Boxes1: View{
