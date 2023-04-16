@@ -30,6 +30,7 @@ class screenView: ObservableObject{
     @Published var showHomeScreen: Bool = true
     @Published var showLoadingScreen: Bool = false
     @Published var showResultScreen: Bool = false
+    @Published var showDummyScreen: Bool = false
 }
 
 class bottomSheetView: ObservableObject{
