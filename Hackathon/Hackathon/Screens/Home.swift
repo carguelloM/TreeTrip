@@ -24,8 +24,10 @@ struct HomeView: View{
 //   @State  var carMakes: [String] = []
     
     @State var makeIndex: Int = 0
+   
     @ObservedObject var carMake: carMakeObj = carMakeObj.shared
     @ObservedObject var carModel: carModelObj = carModelObj.shared
+    
 
 
     
@@ -205,6 +207,8 @@ public struct Boxes: View{
                                     DispatchQueue.main.async {
                                         carModel.carModelArray = makeDisplays!
                                         print(carModel.carModelArray)
+                                        carMake.selectedCar = carMake.carMakesArray[selection-1]
+                                        print(carMake.selectedCar)
                                     }
                                 }
                             
@@ -272,8 +276,10 @@ public struct Boxes1: View{
                     .cornerRadius(14)
                     .shadow(color: Color.green.opacity(0.25), radius: 10, x: 0, y: 10)
                     
-                    .onReceive([self.selection].publisher.first()) { (value) in
-                        print("Hello")
+                    .onChange(of: selection) {_ in
+                    
+                        carModel.selectedModel = carModel.carModelArray[selection-1]
+                        print(carModel.selectedModel)
                     }
                 }
                 Spacer()
@@ -296,6 +302,7 @@ public struct Boxes2: View {
 
     @ObservedObject var carMake: carMakeObj = carMakeObj.shared
     @ObservedObject var carModel: carModelObj = carModelObj.shared
+    @ObservedObject var carYearSelect: carYear = carYear.shared
 
     public var body: some View {
         VStack {
@@ -327,10 +334,11 @@ public struct Boxes2: View {
                             .fill(Color.white))
                     .cornerRadius(14)
                     .shadow(color: Color.green.opacity(0.25), radius: 10, x: 0, y: 10)
-                    .onReceive([self.selection].publisher.first()) { (value) in
-                        print(value)
-                        print(years[value])
-                      }
+                    .onChange(of: selection) {_ in
+                    
+                        carYearSelect.sselectedYear = years[selection]
+                        print(carYearSelect.sselectedYear)
+                    }
                     
                 }
                 Spacer()

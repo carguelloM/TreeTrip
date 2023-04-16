@@ -11,17 +11,18 @@ import SwiftUI
 class carMakeObj: ObservableObject{
     static let shared = carMakeObj()
     @Published  var carMakesArray: [String] = []
+    var selectedCar: String = ""
 }
 
 class carModelObj: ObservableObject{
     static let shared = carModelObj()
     @Published var carModelArray: [String] = []
-     @Published var carNum : Int = 0
+    @Published var selectedModel: String = ""
 }
 
 class carYear: ObservableObject{
     static let shared = carYear()
-    @Published var year: Int = 0
+    @Published var sselectedYear: String = ""
 }
 
 
