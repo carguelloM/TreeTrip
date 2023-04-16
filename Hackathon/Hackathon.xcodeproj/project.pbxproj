@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		725CD57929EB503300A540ED /* car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725CD57829EB503300A540ED /* car.swift */; };
 		725CD57B29EB8F3300A540ED /* carMakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725CD57A29EB8F3300A540ED /* carMakes.swift */; };
+		E7427C0129EBD0D1002E0D41 /* PushGps.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7427C0029EBD0D1002E0D41 /* PushGps.swift */; };
 		E7F9483C29EB163E001F2985 /* HackathonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9483B29EB163E001F2985 /* HackathonApp.swift */; };
 		E7F9483E29EB163E001F2985 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9483D29EB163E001F2985 /* ContentView.swift */; };
 		E7F9484029EB163E001F2985 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7F9483F29EB163E001F2985 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		725CD57829EB503300A540ED /* car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = car.swift; sourceTree = "<group>"; };
 		725CD57A29EB8F3300A540ED /* carMakes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = carMakes.swift; sourceTree = "<group>"; };
+		E7427C0029EBD0D1002E0D41 /* PushGps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushGps.swift; sourceTree = "<group>"; };
 		E7F9483829EB163E001F2985 /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7F9483B29EB163E001F2985 /* HackathonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackathonApp.swift; sourceTree = "<group>"; };
 		E7F9483D29EB163E001F2985 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				E7F9483F29EB163E001F2985 /* Assets.xcassets */,
 				E7F9484129EB163E001F2985 /* Preview Content */,
 				725CD57829EB503300A540ED /* car.swift */,
+				E7427C0029EBD0D1002E0D41 /* PushGps.swift */,
 			);
 			path = Hackathon;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				E7F9483E29EB163E001F2985 /* ContentView.swift in Sources */,
 				E7F9486629EB178B001F2985 /* Home.swift in Sources */,
 				E7F9486929EB3C20001F2985 /* Loading.swift in Sources */,
+				E7427C0129EBD0D1002E0D41 /* PushGps.swift in Sources */,
 				E7F9483C29EB163E001F2985 /* HackathonApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
