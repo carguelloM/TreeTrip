@@ -62,7 +62,8 @@ import UIKit
 //    }.resume()
 //}
 
-func getMakes(from urlString: String, completion: @escaping ([String]?, Error?) -> Void) {
+
+func getMakes(completion: @escaping ([String]?, Error?) -> Void) {
     struct Make: Codable {
         let make_id: String
         let make_display: String
@@ -74,7 +75,7 @@ func getMakes(from urlString: String, completion: @escaping ([String]?, Error?) 
             let Makes: [Make]
         }
     
-    guard let url = URL(string: urlString) else {
+    guard let url = URL(string: "https://www.carqueryapi.com/api/0.3/?cmd=getMakes&sold_in_us=1") else {
         completion(nil, NSError(domain: "Invalid URL", code: -1, userInfo: nil))
         return
     }
@@ -97,13 +98,4 @@ func getMakes(from urlString: String, completion: @escaping ([String]?, Error?) 
     }.resume()
 }
 
-func getJSON()
-{
-    getMakes(from: "https://www.carqueryapi.com/api/0.3/?cmd=getMakes&sold_in_us=1") { (makeDisplays, error) in
-        if let error = error {
-            print("Error decoding JSON: \(error.localizedDescription)")
-        } else {
-            print("Make displays: \(makeDisplays ?? [])")
-        }
-    }
-}
+

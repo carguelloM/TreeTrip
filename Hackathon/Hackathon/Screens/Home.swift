@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 let _backGroundColor = Color(red: 248/255, green: 248/255, blue: 248/255)
 let _borderGreen =  Color(red: 0/255, green: 188/255, blue: 87/255)
@@ -14,6 +15,14 @@ let _buttonColor = Color(red: 73/255, green: 211/255, blue: 148/255)
 
 
 struct HomeView: View{
+
+    
+    
+   @State var carMakes: [String] = []
+
+    
+    
+    
     var body: some View{
         
         
@@ -46,9 +55,20 @@ struct HomeView: View{
                 }
                 
                 
-                
+//                var carMakes : [String] = []
+//                getMakes { (makeDisplays, error) in
+//                    if let error = error {
+//                        print("Error decoding JSON: \(error.localizedDescription)")
+//                    } else {
+//                        carMakes = makeDisplays!
+//                        print(carMakes)
+//                    }
+//                }
+             
                 VStack(spacing: 60){
-                    Boxes(customStrings: ["Select"] + (1...29).map { "String \($0)" }, content: "Make", geometry: geometry)
+//                    Boxes(customStrings: ["Select"] + (1...29).map { "String \($0)" }, content: "Make", geometry: geometry)
+                    Boxes(customStrings: ["Select"] + carMakes, content: "Make", geometry: geometry)
+
                     Boxes(customStrings: ["Select"] + (1...29).map { "String \($0)" }, content: "Model", geometry: geometry)
                     Boxes(customStrings: ["Select"] + (1...29).map { "String \($0)" }, content: "Year", geometry: geometry)
                 }
@@ -81,6 +101,24 @@ struct HomeView: View{
                 
             }
         }
+        .onAppear{
+            getMakes { (makeDisplays, error) in
+                if let error = error {
+                    print("Error decoding JSON: \(error.localizedDescription)")
+                } else {
+                    carMakes = makeDisplays!
+                    print(carMakes)
+                }
+                
+                 //TODO
+                
+                
+                
+                
+                
+            }
+        }
+        
     }
     
     
@@ -116,7 +154,6 @@ public struct Boxes: View{
                                 .tag(index)
                         }
                     }
-                    
                     .padding(9)
                     .padding(.trailing, geometry.size.width * 0.58 )
                     .background(
