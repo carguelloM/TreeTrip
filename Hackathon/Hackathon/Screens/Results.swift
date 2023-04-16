@@ -37,7 +37,8 @@ public struct ResultView: View {
                     .padding(.top, geometry.size.height * 0.2)
                 
                 
-                Text("You drove \(distCal.mydist) miles, emitting \(distCal.myEmission) Kgs of CO2")
+//                Text("You drove \(round(distCal.mydist, 2)) miles, emitting \(round(distCal.myEmission, 2)) Kgs of CO2")
+                Text("You drove \(String(format: "%.2f", distCal.mydist)) miles, emitting \(String(format: "%.2f", distCal.myEmission)) Kgs of CO2")
                     .font(.system(size: 32, weight: .bold, design: .default))
                     .frame(width: 350)
                     .padding(.bottom,geometry.size.height * 0.9 )
