@@ -8,6 +8,9 @@
 import SwiftUI
 import Foundation
 
+// FOR car Make => carMake.carMakesArray
+// FOR car model => carModel.carModelArray
+
 let _backGroundColor = Color(red: 248/255, green: 248/255, blue: 248/255)
 let _borderGreen =  Color(red: 0/255, green: 188/255, blue: 87/255)
 let _shadowGreen = Color(red: 7/255, green: 149/255, blue: 81/255)
@@ -17,8 +20,12 @@ let _buttonColor = Color(red: 73/255, green: 211/255, blue: 148/255)
 struct HomeView: View{
 
     
+
+//   @State  var carMakes: [String] = []
     
-   @State var carMakes: [String] = []
+    @State var makeIndex: Int = 0
+    @ObservedObject var carMake: carMakeObj = carMakeObj.shared
+    @ObservedObject var carModel: carModelObj = carModelObj.shared
 
     
     
@@ -55,26 +62,20 @@ struct HomeView: View{
                 }
                 
                 
-//                var carMakes : [String] = []
-//                getMakes { (makeDisplays, error) in
-//                    if let error = error {
-//                        print("Error decoding JSON: \(error.localizedDescription)")
-//                    } else {
-//                        carMakes = makeDisplays!
-//                        print(carMakes)
-//                    }
-//                }
-             
+                
+                
+                
                 VStack(spacing: 60){
 //                    Boxes(customStrings: ["Select"] + (1...29).map { "String \($0)" }, content: "Make", geometry: geometry)
-                    Boxes(customStrings: ["Select"] + carMakes, content: "Make", geometry: geometry)
-
-                    Boxes(customStrings: ["Select"] + (1...29).map { "String \($0)" }, content: "Model", geometry: geometry)
-                    Boxes(customStrings: ["Select"] + (1...29).map { "String \($0)" }, content: "Year", geometry: geometry)
+                    Boxes(selection: makeIndex,customStrings: ["Select"] + carMake.carMakesArray, content: "Make", geometry: geometry)
+                       
+                    Boxes1(customStrings: ["Select"] + (1...29).map { "String \($0)" }, content: "Model", geometry: geometry)
+                    Boxes2(customStrings: ["Select"] + (1...29).map { "String \($0)" }, content: "Year", geometry: geometry)
                 }
                 .padding(.bottom, geometry.size.height * 0.2)
                 //                .background(Color.red)
                 
+               
                 // init button
                 ZStack {
                     
@@ -106,13 +107,16 @@ struct HomeView: View{
                 if let error = error {
                     print("Error decoding JSON: \(error.localizedDescription)")
                 } else {
-                    carMakes = makeDisplays!
-                    print(carMakes)
+                    carMake.carMakesArray = makeDisplays!
+//                    print(carMake.carMakesArray)
+                    
+                    
+                    
                 }
                 
                  //TODO
                 
-                
+//                print(selection)
                 
                 
                 
@@ -124,13 +128,16 @@ struct HomeView: View{
     
 }
 
-// MARK: - Boxes
+// MARK: - Boxes0
 
 public struct Boxes: View{
-    @State var selection: Int = 0
+    @State public var selection: Int = 0
     let customStrings: [String]
     var content: String
     var geometry: GeometryProxy
+    
+    @ObservedObject var carMake: carMakeObj = carMakeObj.shared
+    @ObservedObject var carModel: carModelObj = carModelObj.shared
     
     public var body: some View{
         
@@ -152,8 +159,140 @@ public struct Boxes: View{
                         ForEach(customStrings.indices, id: \.self) { index in
                             Text(customStrings[index])
                                 .tag(index)
+                            
                         }
+                        
                     }
+                    .fixedSize()
+                    .frame(width: 90)
+                    .padding(9)
+                    .padding(.trailing, geometry.size.width * 0.58 )
+                    .background(
+                        RoundedRectangle(cornerRadius: 14)
+                            .stroke(Color.green, lineWidth: 4))
+                    .background(
+                        RoundedRectangle(cornerRadius: 14)
+                            .fill(Color.white))
+                    .cornerRadius(14)
+                    .shadow(color: Color.green.opacity(0.25), radius: 10, x: 0, y: 10)
+                    .onReceive([self.selection].publisher.first()) { (value) in
+                        print(value)
+                        if(carMake.carMakesArray.count != 0 && value != 0)
+                        {
+                            print(carMake.carMakesArray[value - 1])
+                        }
+
+                      }
+
+                }
+                Spacer()
+            }
+            
+        }
+        .padding(.leading,  geometry.size.width * 0.08)
+        
+    }
+    
+}
+
+
+// MARK: - Boxes1
+
+public struct Boxes1: View{
+    @State public var selection: Int = 0
+    let customStrings: [String]
+    var content: String
+    var geometry: GeometryProxy
+    
+    @ObservedObject var carMake: carMakeObj = carMakeObj.shared
+    @ObservedObject var carModel: carModelObj = carModelObj.shared
+    
+    public var body: some View{
+        
+        
+        VStack{
+            HStack {
+                Text(content)
+                    .font(.system(size: 20, weight: .medium, design: .default))
+                    .opacity(0.75)
+                    .padding(.trailing, geometry.size.width * 0.65)
+                //                            .background(Color.red)
+                Spacer()
+            }
+  
+            HStack{
+                ZStack {
+                    
+                    Picker(selection: $selection, label: Text(customStrings[selection])) {
+                        ForEach(customStrings.indices, id: \.self) { index in
+                            Text(customStrings[index])
+                                .tag(index)
+                            
+                        }
+                        
+                    }
+                    .fixedSize()
+                    .frame(width: 90)
+                    .padding(9)
+                    .padding(.trailing, geometry.size.width * 0.58 )
+                    .background(
+                        RoundedRectangle(cornerRadius: 14)
+                            .stroke(Color.green, lineWidth: 4))
+                    .background(
+                        RoundedRectangle(cornerRadius: 14)
+                            .fill(Color.white))
+                    .cornerRadius(14)
+                    .shadow(color: Color.green.opacity(0.25), radius: 10, x: 0, y: 10)
+                    
+
+                }
+                Spacer()
+            }
+            
+        }
+        .padding(.leading,  geometry.size.width * 0.08)
+        
+    }
+    
+}
+
+// MARK: - Boxes2
+
+public struct Boxes2: View{
+    @State public var selection: Int = 0
+    let customStrings: [String]
+    var content: String
+    var geometry: GeometryProxy
+    
+    @ObservedObject var carMake: carMakeObj = carMakeObj.shared
+    @ObservedObject var carModel: carModelObj = carModelObj.shared
+    
+    public var body: some View{
+        
+        
+        VStack{
+            HStack {
+                Text(content)
+                    .font(.system(size: 20, weight: .medium, design: .default))
+                    .opacity(0.75)
+                    .padding(.trailing, geometry.size.width * 0.65)
+                //                            .background(Color.red)
+                Spacer()
+            }
+  
+            HStack{
+                ZStack {
+                    
+                    Picker(selection: $selection, label: Text(customStrings[selection])) {
+                        ForEach(customStrings.indices, id: \.self) { index in
+                            Text(customStrings[index])
+                                .tag(index)
+                            
+                        }
+                        
+                    }
+                    .fixedSize()
+                    .frame(width: 90)
                     .padding(9)
                     .padding(.trailing, geometry.size.width * 0.58 )
                     .background(
@@ -181,9 +320,17 @@ public struct Boxes: View{
 
 
 
+
+
+
+
+
+
+
+
 struct HomeVeiw: PreviewProvider {
     static var previews: some View {
-        HomeView().previewDevice("iPhone 14 pro Max")
+        HomeView(makeIndex: 0).previewDevice("iPhone 14 pro Max")
             .background(_backGroundColor)
         
     }
