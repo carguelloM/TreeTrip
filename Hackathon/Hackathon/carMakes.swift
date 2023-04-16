@@ -25,4 +25,11 @@ class carYear: ObservableObject{
     @Published var sselectedYear: String = ""
 }
 
+class screenView: ObservableObject{
+    static let shared = screenView()
+    @Published var showHomeScreen: Bool = true
+    @Published var showLoadingScreen: Bool = false
+    @Published var showResultScreen: Bool = false
+}
+
 

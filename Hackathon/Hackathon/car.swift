@@ -149,16 +149,19 @@ func pushInfServ(locationObject: [String: Any]) {
                print("Error: \(error.localizedDescription)")
                return
            }
-           guard let data = data else {
-               print("No data received")
-               return
-           }
-           do {
-               let json = try JSONSerialization.jsonObject(with: data, options: [])
-               print("Response: \(json)")
-           } catch {
-               print("Error parsing response: \(error.localizedDescription)")
-           }
+       
+            // Check if data was received
+              if let data = data {
+                  // Convert the data to a string
+                  if let stringData = String(data: data, encoding: .utf8) {
+                      print("Data as string: \(stringData)")
+                  } else {
+                      print("Unable to convert data to string")
+                  }
+              } else {
+                  print("No data received")
+              }
+
        }
        task.resume()
    }

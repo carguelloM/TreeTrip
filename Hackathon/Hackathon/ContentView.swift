@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var show: screenView = screenView.shared
     var body: some View {
-        HomeView()
+        if (show.showHomeScreen == true)
+        {
+            HomeView()
+        }
+        else if (show.showLoadingScreen == true)
+        {
+            LoadViewContainer(name: "treeGif", text: "Trip in progress...")
+        }
         
     }
 }

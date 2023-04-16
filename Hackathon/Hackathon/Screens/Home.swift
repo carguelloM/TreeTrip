@@ -28,6 +28,8 @@ struct HomeView: View{
     @ObservedObject var carMake: carMakeObj = carMakeObj.shared
     @ObservedObject var carModel: carModelObj = carModelObj.shared
     @ObservedObject var carYearSelect: carYear = carYear.shared
+    
+    @ObservedObject var show: screenView = screenView.shared
 
     
 
@@ -88,6 +90,9 @@ struct HomeView: View{
                     Button{
                         let carInfo = ["make": carMake.selectedCar, "model": carModel.selectedModel, "year": carYearSelect.sselectedYear] as [String : Any]
                         pushInfServ(locationObject: carInfo)
+                        show.showLoadingScreen = true
+                        show.showHomeScreen = false
+                        show.showResultScreen = false
                         
                         
                     }label: {

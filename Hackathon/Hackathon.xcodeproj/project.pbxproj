@@ -10,6 +10,8 @@
 		725CD57929EB503300A540ED /* car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725CD57829EB503300A540ED /* car.swift */; };
 		725CD57B29EB8F3300A540ED /* carMakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725CD57A29EB8F3300A540ED /* carMakes.swift */; };
 		E7427C0129EBD0D1002E0D41 /* PushGps.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7427C0029EBD0D1002E0D41 /* PushGps.swift */; };
+		E7427C0329EBD30B002E0D41 /* LoadViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7427C0229EBD30B002E0D41 /* LoadViewContainer.swift */; };
+		E7427C0529EBE17B002E0D41 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7427C0429EBE17B002E0D41 /* Results.swift */; };
 		E7F9483C29EB163E001F2985 /* HackathonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9483B29EB163E001F2985 /* HackathonApp.swift */; };
 		E7F9483E29EB163E001F2985 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9483D29EB163E001F2985 /* ContentView.swift */; };
 		E7F9484029EB163E001F2985 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7F9483F29EB163E001F2985 /* Assets.xcassets */; };
@@ -43,6 +45,8 @@
 		725CD57829EB503300A540ED /* car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = car.swift; sourceTree = "<group>"; };
 		725CD57A29EB8F3300A540ED /* carMakes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = carMakes.swift; sourceTree = "<group>"; };
 		E7427C0029EBD0D1002E0D41 /* PushGps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushGps.swift; sourceTree = "<group>"; };
+		E7427C0229EBD30B002E0D41 /* LoadViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadViewContainer.swift; sourceTree = "<group>"; };
+		E7427C0429EBE17B002E0D41 /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 		E7F9483829EB163E001F2985 /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7F9483B29EB163E001F2985 /* HackathonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackathonApp.swift; sourceTree = "<group>"; };
 		E7F9483D29EB163E001F2985 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 				E7F9486A29EB4179001F2985 /* treeGif.gif */,
 				E7F9486529EB178B001F2985 /* Home.swift */,
 				E7F9486829EB3C20001F2985 /* Loading.swift */,
+				E7427C0229EBD30B002E0D41 /* LoadViewContainer.swift */,
+				E7427C0429EBE17B002E0D41 /* Results.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -284,11 +290,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7427C0329EBD30B002E0D41 /* LoadViewContainer.swift in Sources */,
 				725CD57B29EB8F3300A540ED /* carMakes.swift in Sources */,
 				725CD57929EB503300A540ED /* car.swift in Sources */,
 				E7F9483E29EB163E001F2985 /* ContentView.swift in Sources */,
 				E7F9486629EB178B001F2985 /* Home.swift in Sources */,
 				E7F9486929EB3C20001F2985 /* Loading.swift in Sources */,
+				E7427C0529EBE17B002E0D41 /* Results.swift in Sources */,
 				E7427C0129EBD0D1002E0D41 /* PushGps.swift in Sources */,
 				E7F9483C29EB163E001F2985 /* HackathonApp.swift in Sources */,
 			);
@@ -451,6 +459,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Hackathon/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -479,6 +489,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Hackathon/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
