@@ -14,6 +14,18 @@ Session(app)
 def test():
     return "phuc"
 
+@app.route("/get_stats_test", methods=["GET"])
+def get_stats_test():
+    data = {
+        "amount_of_trees": 2,
+        "tree": "red-maple",
+        "emissions": 20,
+        "distance": 100
+    }
+    response = jsonify(data)
+    response.status_code = 200
+    return response
+
 @app.route("/start_session", methods=["POST"])
 def start_session():
 
@@ -28,16 +40,17 @@ def start_session():
     session["make"] = request.form.get("make")
     session["model"] = request.form.get("model")
 
-    print(session["make"], session["year"], session["model"])
-
     response = make_response()
     response.status_code = 200
     return response
 
 @app.route("/store_point", methods=["POST"])
 def store_point():
+    print(request.get_json())
     lat = request.form.get("latitude")
     long = request.form.get("longitude")
+
+    print(lat, long)
 
     session["gps_coords"].append((lat, long))
 
@@ -107,11 +120,6 @@ def get_stats():
     response = jsonify(data)
     response.status_code = 200
     return response
-
-
-
-
-
 
 
 def set_distance():
