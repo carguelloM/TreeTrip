@@ -1,8 +1,9 @@
-## What is TreeTrip
-An iOS application that calculates the numbers of trees an individual needs to plan to offset the CO2 emissions of his/her/them car trip
+## Problem Statement:
+The problem to be addressed by this app is to allow individuals mindful of their environmental footprint a way to track and offset their vehicle’s CO2 emissions. While there are many organizations that provide a way for one to plant trees remotely, there are none that tie the planting of a tree to any specific CO2 emitting activity. Moreover, these services require the user to calculate their own CO2 emissions and plant trees accordingly. With this in mind, we wanted to tackle the problem of offsetting vehicular CO2 emissions. We set out to create an iPhone app that brings awareness to one’s CO2 emissions and provides the means for one to act appropriately to offset them. We hope that our user’s will not only live carbon neutral lives but also to become more conscious of their environmental footprint in their day to day lives. 
 
-## How To Use it?
-* Select car make, model, and year
-* Press start tree
-* The application will automatically detect when the trip has ended
-* Select between paying a company to plan a tree OR plan it yourself (specification of the tree you should plan are given to you)
+## Software Details: 
+The frontend of our app was developed in Swift while the backend was developed using Python and the Flask framework. We also used a couple of APIs, one named CarQuery, <emission’s API>, and the rest we developed ourselves.
+The first page of the app is a screen that allows the user to choose the make, model and year of their vehicle. The vehicle search is facilitated by CarQuery. Once the user’s car is selected, one can press the “Start trip” button to begin. During the trip, the app sends the latitude and longitude of the phone’s location periodically to our server. Upon completion of the drive, our server calculates the total distance driven, the total CO2 emissions of the trip and how many trees one needs to plant to offset it. The last screen of the app displays the aforementioned information. In addition, it gives the user the option to plant the required number of trees themselves or to have us plant the trees for them. 
+
+## Improvements:
+To improve upon this project, we need to develop onboarding and login functionality. Doing so, would allow the user to track how many trees they planted and their total impact. Moreover, it would be great if the users could view their forest of trees in order to add an encouraging and tangible element to the user experience. In addition, we would like to provide flexibility and allow for the user to choose the different types of trees they want to plant. Lastly, we would improve the design of the loading screen.
