@@ -32,4 +32,9 @@ class screenView: ObservableObject{
     @Published var showResultScreen: Bool = false
 }
 
+class bottomSheetView: ObservableObject{
+    static let shared = bottomSheetView()
+    @Published var showBottomSheet: Bool = false
+}
+
 

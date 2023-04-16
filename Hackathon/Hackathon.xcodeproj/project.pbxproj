@@ -12,6 +12,7 @@
 		E7427C0129EBD0D1002E0D41 /* PushGps.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7427C0029EBD0D1002E0D41 /* PushGps.swift */; };
 		E7427C0329EBD30B002E0D41 /* LoadViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7427C0229EBD30B002E0D41 /* LoadViewContainer.swift */; };
 		E7427C0529EBE17B002E0D41 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7427C0429EBE17B002E0D41 /* Results.swift */; };
+		E7427C0729EBF71B002E0D41 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7427C0629EBF71B002E0D41 /* BottomSheet.swift */; };
 		E7F9483C29EB163E001F2985 /* HackathonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9483B29EB163E001F2985 /* HackathonApp.swift */; };
 		E7F9483E29EB163E001F2985 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9483D29EB163E001F2985 /* ContentView.swift */; };
 		E7F9484029EB163E001F2985 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7F9483F29EB163E001F2985 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		E7427C0029EBD0D1002E0D41 /* PushGps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushGps.swift; sourceTree = "<group>"; };
 		E7427C0229EBD30B002E0D41 /* LoadViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadViewContainer.swift; sourceTree = "<group>"; };
 		E7427C0429EBE17B002E0D41 /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
+		E7427C0629EBF71B002E0D41 /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		E7F9483829EB163E001F2985 /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7F9483B29EB163E001F2985 /* HackathonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackathonApp.swift; sourceTree = "<group>"; };
 		E7F9483D29EB163E001F2985 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				E7F9484129EB163E001F2985 /* Preview Content */,
 				725CD57829EB503300A540ED /* car.swift */,
 				E7427C0029EBD0D1002E0D41 /* PushGps.swift */,
+				E7427C0629EBF71B002E0D41 /* BottomSheet.swift */,
 			);
 			path = Hackathon;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				E7F9483E29EB163E001F2985 /* ContentView.swift in Sources */,
 				E7F9486629EB178B001F2985 /* Home.swift in Sources */,
 				E7F9486929EB3C20001F2985 /* Loading.swift in Sources */,
+				E7427C0729EBF71B002E0D41 /* BottomSheet.swift in Sources */,
 				E7427C0529EBE17B002E0D41 /* Results.swift in Sources */,
 				E7427C0129EBD0D1002E0D41 /* PushGps.swift in Sources */,
 				E7F9483C29EB163E001F2985 /* HackathonApp.swift in Sources */,
