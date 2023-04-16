@@ -27,8 +27,7 @@ struct HomeView: View{
     @ObservedObject var carMake: carMakeObj = carMakeObj.shared
     @ObservedObject var carModel: carModelObj = carModelObj.shared
 
-    
-    
+
     
     var body: some View{
         
@@ -69,7 +68,10 @@ struct HomeView: View{
 //                    Boxes(customStrings: ["Select"] + (1...29).map { "String \($0)" }, content: "Make", geometry: geometry)
                     Boxes(selection: makeIndex,customStrings: ["Select"] + carMake.carMakesArray, content: "Make", geometry: geometry)
                        
-                    Boxes1(customStrings: ["Select"] + (1...29).map { "String \($0)" }, content: "Model", geometry: geometry)
+                    
+                    
+                    
+                    Boxes1(customStrings:["Select"] + carModel.carModelArray, content: "Model", geometry: geometry)
                     Boxes2(content: "Year",geometry: geometry)
                 }
                 .padding(.bottom, geometry.size.height * 0.2)
@@ -107,20 +109,16 @@ struct HomeView: View{
                 if let error = error {
                     print("Error decoding JSON: \(error.localizedDescription)")
                 } else {
-                    carMake.carMakesArray = makeDisplays!
-//                    print(carMake.carMakesArray)
-                    
-                    
-                    
+                    DispatchQueue.main.async {
+                        carMake.carMakesArray = makeDisplays!
+                        //                    print(carMake.carMakesArray)
+                    }
                 }
-                
-                 //TODO
-                
-//                print(selection)
-                
-                
-                
+            
             }
+            
+            
+            
         }
         
     }
@@ -139,6 +137,7 @@ public struct Boxes: View{
     @ObservedObject var carMake: carMakeObj = carMakeObj.shared
     @ObservedObject var carModel: carModelObj = carModelObj.shared
     
+    
     public var body: some View{
         
         
@@ -175,20 +174,43 @@ public struct Boxes: View{
                             .fill(Color.white))
                     .cornerRadius(14)
                     .shadow(color: Color.green.opacity(0.25), radius: 10, x: 0, y: 10)
-                    .onReceive([self.selection].publisher.first()) { (value) in
-            
-                        if(carMake.carMakesArray.count != 0 && value != 0)
-                        {
-                            getModels(from: carMake.carMakesArray[value-1]) { (modelDisplays, error) in
+//                    .onReceive([self.selection].publisher.first()) { (value) in
+//
+//                        if(carMake.carMakesArray.count != 0 && value != 0)
+//                        {
+//
+//                            getModels(from: carMake.carMakesArray[value-1]) { (makeDisplays, error) in
+//                                if let error = error {
+//                                    print("Error decoding JSON: \(error.localizedDescription)")
+//                                } else {
+//                                    DispatchQueue.main.async {
+//
+//
+//                                    }
+//                                }
+//
+//                            }
+//                            self.carModel.carModelArray = ["Model A", "Model B", "Model C"]
+//                            print(self.carModel.carModelArray)
+//                        }
+//
+//                      }
+                    .onChange(of: selection) {_ in
+                    
+                        if(selection != 0 && carMake.carMakesArray.count != 0) {
+                            getModels(from: carMake.carMakesArray[selection-1]){ (makeDisplays, error) in
                                 if let error = error {
                                     print("Error decoding JSON: \(error.localizedDescription)")
                                 } else {
-                                    carModel.carModelArray = modelDisplays!}
- 
+                                    DispatchQueue.main.async {
+                                        carModel.carModelArray = makeDisplays!
+                                        print(carModel.carModelArray)
+                                    }
+                                }
+                            
                             }
                         }
-
-                      }
+                    }
 
                 }
                 Spacer()
@@ -202,79 +224,6 @@ public struct Boxes: View{
 }
 
 
-
-//public struct Boxes: View {
-//    @State public var selection: Int = 0
-//    let customStrings: [String]
-//    var content: String
-//    var geometry: GeometryProxy
-//
-//    @ObservedObject var carMake: carMakeObj = carMakeObj.shared
-//    @ObservedObject var carModel: carModelObj = carModelObj.shared
-//
-//    public var body: some View {
-//        VStack {
-//            HStack {
-//                Text(content)
-//                    .font(.system(size: 20, weight: .medium, design: .default))
-//                    .opacity(0.75)
-//                    .padding(.trailing, geometry.size.width * 0.65)
-//                Spacer()
-//            }
-//
-//            HStack {
-//                ZStack {
-//                    Picker(selection: $selection, label: EmptyView()) {
-//                        ForEach(customStrings.indices, id: \.self) { index in
-//                            Text(customStrings[index])
-//                                .tag(index)
-//                        }
-//                    }
-//                    .fixedSize()
-//                    .padding(9)
-//                    .padding(.trailing, geometry.size.width * 0.58)
-//                    .background(
-//                        RoundedRectangle(cornerRadius: 14)
-//                            .stroke(Color.green, lineWidth: 4))
-//                    .background(
-//                        RoundedRectangle(cornerRadius: 14)
-//                            .fill(Color.white))
-//                    .cornerRadius(14)
-//                    .shadow(color: Color.green.opacity(0.25), radius: 10, x: 0, y: 10)
-//                    .onReceive([self.selection].publisher.first()) { (value) in
-//                        print(value)
-//                        if carMake.carMakesArray.count != 0 && value != 0 {
-//                            print(carMake.carMakesArray[value - 1])
-//                        }
-//                    }
-//                    
-//                    ScrollView(.horizontal, showsIndicators: false) {
-//                        Text(customStrings[selection])
-//                            .padding(.horizontal, 10)
-//                    }
-//                    .frame(width: 90, height: 30)
-//                    .background(
-//                        RoundedRectangle(cornerRadius: 14)
-//                            .stroke(Color.green, lineWidth: 4))
-//                    .background(
-//                        RoundedRectangle(cornerRadius: 14)
-//                            .fill(Color.white))
-//                    .cornerRadius(14)
-//                }
-//                Spacer()
-//            }
-//        }
-//        .padding(.leading, geometry.size.width * 0.08)
-//    }
-//}
-
-
-
-
-
-
-
-
 // MARK: - Boxes1
 
 public struct Boxes1: View{
@@ -285,7 +234,7 @@ public struct Boxes1: View{
     
     @ObservedObject var carMake: carMakeObj = carMakeObj.shared
     @ObservedObject var carModel: carModelObj = carModelObj.shared
-    
+
     public var body: some View{
         
         
@@ -323,7 +272,9 @@ public struct Boxes1: View{
                     .cornerRadius(14)
                     .shadow(color: Color.green.opacity(0.25), radius: 10, x: 0, y: 10)
                     
-
+                    .onReceive([self.selection].publisher.first()) { (value) in
+                        print("Hello")
+                    }
                 }
                 Spacer()
             }

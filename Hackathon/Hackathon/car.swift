@@ -98,7 +98,7 @@ func getMakes(completion: @escaping ([String]?, Error?) -> Void) {
     }.resume()
 }
 
-func getModels(from model: String, completion: @escaping ([String]?, Error?) -> Void)
+func getModels(from make: String, completion: @escaping ([String]?, Error?) -> Void)
 {
     struct Model: Codable {
         let model_name: String
@@ -109,7 +109,7 @@ func getModels(from model: String, completion: @escaping ([String]?, Error?) -> 
             let Models: [Model]
         }
   
-    guard let url = URL(string: "https://www.carqueryapi.com/api/0.3/?cmd=getModels&make=ford&year=2005&sold_in_us=1&body=SUV&make_display="+model) else {
+    guard let url = URL(string: "https://www.carqueryapi.com/api/0.3/?cmd=getModels&make="+make+"&sold_in_us=1") else {
         completion(nil, NSError(domain: "Invalid URL", code: -1, userInfo: nil))
         return
     }
@@ -125,6 +125,7 @@ func getModels(from model: String, completion: @escaping ([String]?, Error?) -> 
             let modResponse = try decoder.decode(ModelResponse.self, from: data)
             let models = modResponse.Models
             let modelDisplay = models.map { $0.model_name }
+            print(modelDisplay)
             completion(modelDisplay, nil)
         } catch let error {
             completion(nil, error)
@@ -132,4 +133,5 @@ func getModels(from model: String, completion: @escaping ([String]?, Error?) -> 
     }.resume()
     
 }
+
 
