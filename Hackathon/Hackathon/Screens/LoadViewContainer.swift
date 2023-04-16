@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 public struct LoadViewContainer: View {
-    
+    @ObservedObject var showScreen: screenView = screenView.shared
     let name: String
     let text: String
     
@@ -21,18 +21,9 @@ public struct LoadViewContainer: View {
     
     public var body: some View {
         ZStack {
-            
-            
-            LoadingView(name: name)
-                .padding(.top, 250)
-            
-            
-            Text(text)
-                .font(.system(size: 36, weight: .bold, design: .default))
-                .foregroundColor(.black)
-                .padding(.bottom, 650)
-            
-            PushGps()
+          
+//            PushGps()
+          
             
         }
     }

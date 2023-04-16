@@ -16,7 +16,12 @@ struct ContentView: View {
         }
         else if (show.showLoadingScreen == true)
         {
-            LoadViewContainer(name: "treeGif", text: "Trip in progress...")
+//            LoadViewContainer(name: "treeGif", text: "Trip in progress...")
+            PushGps()
+        }
+        else if (show.showDummyScreen == true)
+        {
+            DummyView()
         }
         
     }

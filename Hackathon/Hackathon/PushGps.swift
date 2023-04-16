@@ -9,6 +9,10 @@ import CoreLocation
 import SwiftUI
 
 struct PushGps: View {
+    
+    @ObservedObject var showDummy: screenView = screenView.shared
+   
+    
     @StateObject var locationDataManager = LocationDataManager()
     var body: some View {
         VStack {
@@ -26,7 +30,11 @@ struct PushGps: View {
                     let longitude = location?.coordinate.longitude
                     //let timestamp = Int(Date().timeIntervalSince1970)
                     let locationObject = ["latitude": latitude, "longitude": longitude] as [String : Any]
-                    postLocationToServer(locationObject: locationObject)
+//                    if(showDummy.showLoadingScreen != false)
+//                    {
+//                        print("Test")
+//                        postLocationToServer(locationObject: locationObject)
+//                    }
 //                    if (latitude == last_latitude && longitude == last_longitude){
 //                        return
 //                    }
@@ -44,7 +52,26 @@ struct PushGps: View {
                 ProgressView()
             }
         }
+        .onAppear{
+                let _ = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { _ in
+                    let location = locationDataManager.locationManager.location
+                    let latitude = location?.coordinate.latitude
+                    let longitude = location?.coordinate.longitude
+                    let timestamp = Int(Date().timeIntervalSince1970)
+                    let locationObject = ["latitude": latitude, "longitude": longitude, "timestamp": timestamp] as [String : Any]
+                    if(showDummy.showLoadingScreen != false)
+                    {
+                        print("Test")
+                        postLocationToServer(locationObject: locationObject)
+                    }
+    //                    if (latitude == last_latitude && longitude == last_longitude){
+    //                        return
+    //                    }
+                    //LoadingView(name: "treeGif")
+                }
+            }
     }
+
     func postLocationToServer(locationObject: [String: Any]) {
            let url = URL(string: "http://10.28.54.95:5000/store_point")!
            var request = URLRequest(url: url)
@@ -58,17 +85,28 @@ struct PushGps: View {
                if let error = error {
                    print("Error: \(error.localizedDescription)")
                    return
+               }else if let httpResponse = response as? HTTPURLResponse {
+                   print("Status code: \(httpResponse.statusCode)")
+                   if httpResponse.statusCode == 208 {
+                       DispatchQueue.main.async {
+                           showDummy.showDummyScreen = true
+                           showDummy.showHomeScreen = false
+                           showDummy.showLoadingScreen = false
+                       }
+                   }
                }
-               guard let data = data else {
-                   print("No data received")
-                   return
-               }
-               do {
-                   let json = try JSONSerialization.jsonObject(with: data, options: [])
-                   print("Response: \(json)")
-               } catch {
-                   print("Error parsing response: \(error.localizedDescription)")
-               }
+              
+               // Check if data was received
+                 if let data = data {
+                     // Convert the data to a string
+                     if let stringData = String(data: data, encoding: .utf8) {
+                         print("Data as string: \(stringData)")
+                     } else {
+                         print("Unable to convert data to string")
+                     }
+                 } else {
+                     print("No data received")
+                 }
            }
            task.resume()
        }
@@ -123,9 +161,9 @@ class LocationDataManager : NSObject, ObservableObject, CLLocationManagerDelegat
 
 
 
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
+struct PushGPS_view: PreviewProvider {
+    static var previews: some View {
+        PushGps().previewDevice("iPhone 14 pro Max")
+    }
+}
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		725CD57929EB503300A540ED /* car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725CD57829EB503300A540ED /* car.swift */; };
 		725CD57B29EB8F3300A540ED /* carMakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725CD57A29EB8F3300A540ED /* carMakes.swift */; };
+		725CD57D29EBE6E600A540ED /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725CD57C29EBE6E600A540ED /* Dummy.swift */; };
 		E7427C0129EBD0D1002E0D41 /* PushGps.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7427C0029EBD0D1002E0D41 /* PushGps.swift */; };
 		E7427C0329EBD30B002E0D41 /* LoadViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7427C0229EBD30B002E0D41 /* LoadViewContainer.swift */; };
 		E7427C0529EBE17B002E0D41 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7427C0429EBE17B002E0D41 /* Results.swift */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		725CD57829EB503300A540ED /* car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = car.swift; sourceTree = "<group>"; };
 		725CD57A29EB8F3300A540ED /* carMakes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = carMakes.swift; sourceTree = "<group>"; };
+		725CD57C29EBE6E600A540ED /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
 		E7427C0029EBD0D1002E0D41 /* PushGps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushGps.swift; sourceTree = "<group>"; };
 		E7427C0229EBD30B002E0D41 /* LoadViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadViewContainer.swift; sourceTree = "<group>"; };
 		E7427C0429EBE17B002E0D41 /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				E7F9486829EB3C20001F2985 /* Loading.swift */,
 				E7427C0229EBD30B002E0D41 /* LoadViewContainer.swift */,
 				E7427C0429EBE17B002E0D41 /* Results.swift */,
+				725CD57C29EBE6E600A540ED /* Dummy.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			files = (
 				E7427C0329EBD30B002E0D41 /* LoadViewContainer.swift in Sources */,
 				725CD57B29EB8F3300A540ED /* carMakes.swift in Sources */,
+				725CD57D29EBE6E600A540ED /* Dummy.swift in Sources */,
 				725CD57929EB503300A540ED /* car.swift in Sources */,
 				E7F9483E29EB163E001F2985 /* ContentView.swift in Sources */,
 				E7F9486629EB178B001F2985 /* Home.swift in Sources */,
