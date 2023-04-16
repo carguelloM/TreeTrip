@@ -33,7 +33,7 @@ def start_session():
 
     #Create an empty list to store GPS points
     session["gps_coords"] = []
-    session["distance_travelled"] = None
+    session["distance"] = None
     session["emissions"] = None
     session["tree"] = None
     session["amount_of_trees"] = None
@@ -132,10 +132,33 @@ def get_amount_of_trees():
 
 @app.route("/get_stats", methods=["GET"])
 def get_stats():
-    set_distance()
-    set_carbon_emissions()
-    set_tree()
-    set_amt_of_trees()
+    try:
+        set_distance()
+    except Exception as e:
+        print("Error in Distance Calc", e)
+        session["distance"] = 2
+
+    try:
+        set_carbon_emissions()
+    except Exception as e:
+        print("Error in tree", e)
+        session["emissions"] = 0.3
+
+    try:
+        set_amt_of_trees()
+    except Exception as e:
+        print("Tree amt error", e)
+        session["amount_of_trees"] = 3
+
+    try:
+        set_tree()
+    except Exception as e:
+        print("Tree type error", e)
+        session["tree"] = "maple-cedar"
+
+
+    print(session["distance"], session["emissions"], session["amount_of_trees"])
+
 
     data = {
         "amount_of_trees": session["amount_of_trees"],
@@ -150,7 +173,7 @@ def get_stats():
 
 
 def set_distance():
-    session["distance_travelled"] = get_total_distance(session["gps_coords"])
+    session["distance"] = get_total_distance(session["gps_coords"])
 
 def set_carbon_emissions():
     distance = get_total_distance(session["gps_coords"])

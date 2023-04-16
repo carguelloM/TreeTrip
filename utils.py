@@ -9,7 +9,7 @@ CARBON_CONSUMPTION_PER_TREE_KG = 10
 def get_token():
     with open("token") as f:
         token = f.readline()
-    return token
+    return token.strip()
 
 
 def get_dist_between_two_points(coord1, coord2):
@@ -33,7 +33,7 @@ def get_dist_between_two_points(coord1, coord2):
 def get_total_distance(gps_coords):
     total_distance = 0
     for i in range(len(gps_coords) - 1):
-        dist = get_dist_between_two_points(gps_coords[i + 1, gps_coords[i]])
+        dist = get_dist_between_two_points(gps_coords[i + 1], gps_coords[i])
         total_distance += abs(dist)
 
     return total_distance
@@ -52,6 +52,8 @@ def get_car_id(year, make, model):
 
     make_id = get_make_id(make)
 
+    print("Make:", make_id)
+
     headers = {"Authorization": "Bearer " + get_token(),
                "Content-Type": "application/json"}
 
@@ -61,6 +63,7 @@ def get_car_id(year, make, model):
     filtered_elements = [e for e in response.json() if e["data"]["attributes"]["name"].lower() == model.lower()
                          and str(e["data"]["attributes"]["year"]) == str(year)
                          and e["data"]["attributes"]["vehicle_make"].lower() == make.lower()]
+    print("filtered_elements_in_car_id", filtered_elements)
     return filtered_elements[0]["data"]["id"]
 
 def calculate_emissions(distance, year, make, model):
@@ -79,7 +82,9 @@ def calculate_emissions(distance, year, make, model):
     response = requests.post(ESTIMATES_ENDPOINT, json=data,
                              headers=headers)
 
-    return response.json()["data"]["attributes"]["carbon_kg"]
+    e = response.json()["data"]["attributes"]["carbon_kg"]
+    print("Calculated Emissions:", e)
+    return e
 
 # Find the tree species closest to the given coordinate
 def find_closest_tree(lat, lon):
@@ -95,6 +100,6 @@ def calculate_num_trees(car_emissions, emis_per_tree=CARBON_CONSUMPTION_PER_TREE
     return ceil(car_emissions/emis_per_tree)
 
 if __name__ == "__main__":
-    print(find_closest_tree(43.71, -72))
+    print(get_make_id("honda"))
 
 
