@@ -38,4 +38,10 @@ class bottomSheetView: ObservableObject{
     @Published var showBottomSheet: Bool = false
 }
 
+class distanceObj: ObservableObject{
+    static let shared = distanceObj()
+    @Published var mydist : Float = 20.0
+    @Published var myEmission: Float = 0.3
+    @Published var numTress: Int = 0
+}
 

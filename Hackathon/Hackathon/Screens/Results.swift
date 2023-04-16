@@ -11,6 +11,7 @@ import SwiftUI
 
 public struct ResultView: View {
     @ObservedObject var showSheet: bottomSheetView = bottomSheetView.shared
+    @ObservedObject var distCal: distanceObj = distanceObj.shared
     
     @State private var distance: Int = 0
     @State private var numTrees: Int = 0
@@ -21,10 +22,11 @@ public struct ResultView: View {
     private let shadowGreen = Color.green
     
     struct DataModel: Codable {
-        let distance: Int
-        let emissions: Int
-        let tree: String
         let amount_of_trees: Int
+        let distance: Float
+        let emissions: Float
+        let tree : String
+       
     }
     
     public var body: some View {
@@ -35,14 +37,14 @@ public struct ResultView: View {
                     .padding(.top, geometry.size.height * 0.2)
                 
                 
-                Text("You drove \(distance) miles, emitting \(emissions) grams of CO2")
+                Text("You drove \(distCal.mydist) miles, emitting \(distCal.myEmission) Kgs of CO2")
                     .font(.system(size: 32, weight: .bold, design: .default))
                     .frame(width: 350)
                     .padding(.bottom,geometry.size.height * 0.9 )
                     .padding(.trailing,geometry.size.width * 0.15 )
                 //                    .background(Color.red)
                 
-                Text("You need to plant \(numTrees) trees to offset your emissions")
+                Text("You need to plant \(distCal.numTress) trees to offset your emissions")
                     .font(.system(size: 20, weight: .bold, design: .default))
                     .multilineTextAlignment(.center)
                     .opacity(0.5)
@@ -106,6 +108,7 @@ public struct ResultView: View {
     }
     
     private func loadData() {
+        print("LOAD DATA")
         guard let url = URL(string: "http://10.28.54.95:5000/get_stats") else {
             print("Invalid URL")
             return
@@ -115,12 +118,18 @@ public struct ResultView: View {
             if let data = data {
                 if let decodedData = try? JSONDecoder().decode(DataModel.self, from: data) {
                     DispatchQueue.main.async {
-                        self.distance = decodedData.distance
-                        self.emissions = decodedData.emissions
-                        self.typeTree = decodedData.tree
-                        self.numTrees = decodedData.amount_of_trees
+                       print("Data HEREEE")
+                        print(decodedData.distance)
+                        print(decodedData.emissions)
+                        distCal.mydist = decodedData.distance
+                        distCal.myEmission = decodedData.emissions
+                        distCal.numTress = decodedData.amount_of_trees
                     }
                     return
+                }
+                else
+                {
+                    print("BIG PROBLEM")
                 }
             }
         }.resume()

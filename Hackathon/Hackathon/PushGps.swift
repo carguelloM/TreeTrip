@@ -53,7 +53,7 @@ struct PushGps: View {
             }
         }
         .onAppear{
-                let _ = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { _ in
+                let _ = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { _ in
                     let location = locationDataManager.locationManager.location
                     let latitude = location?.coordinate.latitude
                     let longitude = location?.coordinate.longitude
