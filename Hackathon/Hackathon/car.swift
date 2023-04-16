@@ -135,3 +135,30 @@ func getModels(from make: String, completion: @escaping ([String]?, Error?) -> V
 }
 
 
+func pushInfServ(locationObject: [String: Any]) {
+       let url = URL(string: "http://10.28.54.95:5000/start_session")!
+       var request = URLRequest(url: url)
+       request.httpMethod = "POST"
+       request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+       guard let httpBody = try? JSONSerialization.data(withJSONObject: locationObject, options: []) else {
+           return
+       }
+       request.httpBody = httpBody
+       let task = URLSession.shared.dataTask(with: request) { data, response, error in
+           if let error = error {
+               print("Error: \(error.localizedDescription)")
+               return
+           }
+           guard let data = data else {
+               print("No data received")
+               return
+           }
+           do {
+               let json = try JSONSerialization.jsonObject(with: data, options: [])
+               print("Response: \(json)")
+           } catch {
+               print("Error parsing response: \(error.localizedDescription)")
+           }
+       }
+       task.resume()
+   }

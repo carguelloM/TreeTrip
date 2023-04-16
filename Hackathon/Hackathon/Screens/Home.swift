@@ -27,6 +27,8 @@ struct HomeView: View{
    
     @ObservedObject var carMake: carMakeObj = carMakeObj.shared
     @ObservedObject var carModel: carModelObj = carModelObj.shared
+    @ObservedObject var carYearSelect: carYear = carYear.shared
+
     
 
 
@@ -84,7 +86,10 @@ struct HomeView: View{
                 ZStack {
                     
                     Button{
-                        // TODO
+                        let carInfo = ["make": carMake.selectedCar, "model": carModel.selectedModel, "year": carYearSelect.sselectedYear] as [String : Any]
+                        pushInfServ(locationObject: carInfo)
+                        
+                        
                     }label: {
                         Text("Start trip")
                             .font(.system(size: 24, weight: .bold, design: .default))
