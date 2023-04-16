@@ -176,10 +176,16 @@ public struct Boxes: View{
                     .cornerRadius(14)
                     .shadow(color: Color.green.opacity(0.25), radius: 10, x: 0, y: 10)
                     .onReceive([self.selection].publisher.first()) { (value) in
-                        print(value)
+            
                         if(carMake.carMakesArray.count != 0 && value != 0)
                         {
-                            print(carMake.carMakesArray[value - 1])
+                            getModels(from: carMake.carMakesArray[value-1]) { (modelDisplays, error) in
+                                if let error = error {
+                                    print("Error decoding JSON: \(error.localizedDescription)")
+                                } else {
+                                    carModel.carModelArray = modelDisplays!}
+ 
+                            }
                         }
 
                       }
