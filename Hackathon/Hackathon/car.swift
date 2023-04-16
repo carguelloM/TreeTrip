@@ -98,5 +98,38 @@ func getMakes(completion: @escaping ([String]?, Error?) -> Void) {
     }.resume()
 }
 
+func getModels(from model: String, completion: @escaping ([String]?, Error?) -> Void)
+{
+    struct Model: Codable {
+        let model_name: String
+        let model_make_id: String
+        }
+    
+    struct ModelResponse: Codable {
+            let Models: [Model]
+        }
+  
+    guard let url = URL(string: "https://www.carqueryapi.com/api/0.3/?cmd=getModels&make=ford&year=2005&sold_in_us=1&body=SUV&make_display="+model) else {
+        completion(nil, NSError(domain: "Invalid URL", code: -1, userInfo: nil))
+        return
+    }
+    print(url)
+    URLSession.shared.dataTask(with: url) { (data, response, error) in
+        guard let data = data else {
+            completion(nil, error ?? NSError(domain: "Unknown error", code: -1, userInfo: nil))
+            return
+        }
 
+        do {
+            let decoder = JSONDecoder()
+            let modResponse = try decoder.decode(ModelResponse.self, from: data)
+            let models = modResponse.Models
+            let modelDisplay = models.map { $0.model_name }
+            completion(modelDisplay, nil)
+        } catch let error {
+            completion(nil, error)
+        }
+    }.resume()
+    
+}
 
